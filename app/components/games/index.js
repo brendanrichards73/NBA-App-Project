@@ -1,8 +1,17 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Image, ScrollView, TouchableOpacity} from 'react-native';
+
+import { connect } from 'react-redux';
+import { getGames } from '../../store/actions/games_actions';
+import Moment from 'moment';
 
 
 class Games extends Component{
+
+  componentDidMount(){
+    this.props.dispatch(getGames())
+  }
+
   render() {
     
     return (
@@ -23,4 +32,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Games;
+function mapStateToProps(state){
+  console.log(state)
+  return {
+    Games:state.Games
+  }
+}
+
+export default connect(mapStateToProps)(Games);
