@@ -6,7 +6,24 @@ export const SIGNUP = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp
 export const SIGNIN = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${APIKEY}';
 export const REFRESH = '';
 
+export const convertFirebase = (data) => {
+    const newData = [];
 
+        for(let key in data){
+            newData.push({
+                ...data[key],
+                id: key
+            })
+        }
+        return newData;
+}
+
+export const findTeamData = (itemId, teams) => {
+    const value = teams.find((team) => {
+        return team.id ===itemId
+    })
+    return value;
+}
 // export const getTokens = (cb) => {
 
 //     AsyncStorage.multiGet([
